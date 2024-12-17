@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+    <title>Trang chủ</title>   
+</head>
+<body>
+    <!-- Header -->
+    <header>
+		<div class="head">
+			<div class="logo">
+				<a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+			</div>
+			<div class="header-text">
+				The Only One
+			</div>
+		</div>
+    </header>
+
+   <!-- Navigation Menu -->
+<nav>
+    <ul>
+        <li><a href="trangchu.html" onclick="setActive(event)">Trang chủ</a></li>
+            <li><a href="lop10.html" onclick="setActive(event)">Lớp 10</a></li>
+            <li><a href="lop11.html" onclick="setActive(event)">Lớp 11</a></li>
+            <li><a href="lop12.html" onclick="setActive(event)">Lớp 12</a></li>
+            <li><a href="thanhvien.html" onclick="setActive(event)">Thành viên</a></li>
+    </ul>
+</nav>
+
+<!-- Content Area -->
+<div id="content-area">
+     <!-- Content -->
+    <div class="content">
+        <!-- Cột 1: Ảnh lớp -->
+        <div class="column">
+            <img src="images/anhlop.jpg" alt="Ảnh lớp học"> <!-- Thay 'classroom.jpg' bằng đường dẫn ảnh của bạn -->
+        </div>
+
+        <!-- Cột 2: Text và link Facebook -->
+        <div class="column column-2">
+            <h2>TOÁN 1 - KHÓA 11</h2>
+            <p>2022 - 2025</p>
+            <div class="social-icon">
+    <a href="https://www.facebook.com/profile.php?id=100085903333830" target="_blank">
+        <img src="images/iconfb.png" alt="Facebook" style="width: 30px; vertical-align: middle;">
+        <span style="vertical-align: middle;">Facebook</span>
+    </a>
+</div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
