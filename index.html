@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Game Tài Xỉu Vui Vẻ</title>
+  <meta charset="UTF-8">
+  <title>Game Tài Xỉu Vui Vẻ 🎲</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 20px;
+      background: #f0f0f0;
+      padding: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    .dice-container {
+      font-size: 60px;
+      margin: 20px;
     }
     button {
-      font-size: 20px;
+      padding: 10px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s;
       margin: 10px;
-      padding: 10px 20px;
     }
-    .dice {
-      font-size: 40px;
+    button:hover {
+      background: #0056b3;
     }
     .result {
-      font-size: 24px;
       margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .choice {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>🎲hả hả hả🎲</h1>
 
-  <div>
-    <button onclick="choose('Tài')">Chọn Tài</button>
-    <button onclick="choose('Xỉu')">Chọn Xỉu</button>
+  <h1>🎲 Game Tung 3 Xúc Xắc - Tài Xỉu 🎲</h1>
+
+  <div class="choice">
+    <strong>Bạn chọn:</strong>
+    <button onclick="choose('Tài')">🔥 Tài </button>
+    <button onclick="choose('Xỉu')">❄️ Xỉu </button>
+    <p id="userChoiceText">Chưa chọn</p>
   </div>
 
-  <div style="margin-top: 20px;">
-    <button onclick="rollDice()">🎲 Tung xúc xắc 🎲</button>
-  </div>
+  <div class="dice-container" id="dice">⚀ ⚀ ⚀</div>
+  <button onclick="rollDice()">Tung Xúc Xắc</button>
 
-  <div class="dice" id="dice"></div>
-  <div class="result" id="result"></div>
+  <div class="result" id="sum"></div>
+  <div class="result" id="txResult"></div>
+  <div class="result" id="winResult"></div>
 
   <script>
-    let userChoice = '';
+    let userChoice = "";
 
     function choose(choice) {
       userChoice = choice;
-      document.getElementById('result').textContent = `Bạn đã chọn: ${choice}`;
+      document.getElementById("userChoiceText").innerText = `Bạn đã chọn: ${choice}`;
+      document.getElementById("winResult").innerText = "";
+      document.getElementById("sum").innerText = "";
+      document.getElementById("txResult").innerText = "";
+    }
+
+    function getDiceSymbol(num) {
+      const diceSymbols = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+      return diceSymbols[num - 1];
     }
 
     function rollDice() {
       if (!userChoice) {
-        alert("Bạn cần chọn Tài hoặc Xỉu trước!");
+        alert("Bạn cần chọn Tài hoặc Xỉu trước khi tung xúc xắc!");
         return;
       }
 
-      const dice1 = Math.floor(Math.random() * 6) + 1;
-      const dice2 = Math.floor(Math.random() * 6) + 1;
-      const dice3 = Math.floor(Math.random() * 6) + 1;
-      const total = dice1 + dice2 + dice3;
+      const dice = [];
+      for (let i = 0; i < 3; i++) {
+        dice.push(Math.floor(Math.random() * 6) + 1);
+      }
 
-      document.getElementById('dice').textContent = `🎲 ${dice1} + ${dice2} + ${dice3} = ${total}`;
+      const diceSymbols = dice.map(getDiceSymbol).join(' ');
+      const total = dice.reduce((sum, val) => sum + val, 0);
+      const result = total <= 10 ? "Xỉu" : "Tài";
 
-      let outcome = (total >= 4 && total <= 10) ? 'Xỉu' : 'Tài';
+      document.getElementById("dice").innerHTML = diceSymbols;
+      document.getElementById("sum").innerText = `Tổng điểm: ${total}`;
+      document.getElementById("txResult").innerText = `Kết quả: ${result === "Tài" ? "🔥 Tài 🔥" : "❄️ Xỉu ❄️"}`;
 
-      let resultText = `Kết quả: ${outcome} (${total}) → `;
-      resultText += (userChoice === outcome) ? '🎉 Bạn thắng!' : '😢chơi lại đi ní';
+      const winText = (userChoice === result) ? "🎉 Bạn thắng!" : "😢 Bạn thua rồi!";
+      document.getElementById("winResult").innerText = winText;
 
-      document.getElementById('result').textContent = resultText;
-
-      userChoice = ''; // reset sau mỗi ván
+      // Reset lựa chọn nếu bạn muốn người chơi chọn lại mỗi lượt
+      userChoice = "";
+      document.getElementById("userChoiceText").innerText = "Chưa chọn";
     }
   </script>
+
 </body>
 </html>
