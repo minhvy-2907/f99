@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Game Tài Xỉu🎲</title>
+  <title>Game Tài Xỉu Vui Vẻ 🎲</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -40,16 +40,24 @@
       font-size: 20px;
       margin-bottom: 10px;
     }
+    .top-buttons {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>🎲 Game Tài Xỉu 🎲</h1>
+  <h1>🎲 Game Tung 3 Xúc Xắc - Tài Xỉu 🎲</h1>
+
+  <!-- Nút Nạp Tiền -->
+  <div class="top-buttons">
+    <button onclick="window.location.href='https://minhvy-2907.github.io/minhvy/'">💰 Nạp Tiền</button>
+  </div>
 
   <div class="choice">
     <strong>Bạn chọn:</strong>
-    <button onclick="choose('Tài')">🔥 Tài </button>
-    <button onclick="choose('Xỉu')">❄️ Xỉu </button>
+    <button onclick="choose('Tài')">🔥 Tài (11–17)</button>
+    <button onclick="choose('Xỉu')">❄️ Xỉu (4–10)</button>
     <p id="userChoiceText">Chưa chọn</p>
   </div>
 
@@ -98,7 +106,6 @@
       const winText = (userChoice === result) ? "🎉 Bạn thắng!" : "😢 Bạn thua rồi!";
       document.getElementById("winResult").innerText = winText;
 
-      // Reset lựa chọn nếu bạn muốn người chơi chọn lại mỗi lượt
       userChoice = "";
       document.getElementById("userChoiceText").innerText = "Chưa chọn";
     }
