@@ -27,8 +27,8 @@
   <h1>🎲hả hả hả🎲</h1>
 
   <div>
-    <button onclick="choose('Tài')">Chọn Tài (11-17)</button>
-    <button onclick="choose('Xỉu')">Chọn Xỉu (4-10)</button>
+    <button onclick="choose('Tài')">Chọn Tài</button>
+    <button onclick="choose('Xỉu')">Chọn Xỉu</button>
   </div>
 
   <div style="margin-top: 20px;">
@@ -62,7 +62,7 @@
       let outcome = (total >= 4 && total <= 10) ? 'Xỉu' : 'Tài';
 
       let resultText = `Kết quả: ${outcome} (${total}) → `;
-      resultText += (userChoice === outcome) ? '🎉 Bạn thắng!' : '😢 Bạn thua rồi.';
+      resultText += (userChoice === outcome) ? '🎉 Bạn thắng!' : '😢chơi lại đi ní';
 
       document.getElementById('result').textContent = resultText;
 
