@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Game Tài Xỉu Vui Vẻ 🎲</title>
+  <meta charset="UTF-8" />
+  <title>Game Tài Xỉu Vui Vẻ</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: sans-serif;
       text-align: center;
-      background: #f0f0f0;
-      padding: 50px;
-    }
-    h1 {
-      color: #333;
-    }
-    .dice-container {
-      font-size: 60px;
-      margin: 20px;
+      padding: 20px;
     }
     button {
-      padding: 10px 25px;
-      font-size: 18px;
-      cursor: pointer;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      transition: 0.3s;
+      font-size: 20px;
+      margin: 10px;
+      padding: 10px 20px;
     }
-    button:hover {
-      background: #0056b3;
+    .dice {
+      font-size: 40px;
     }
     .result {
-      margin-top: 20px;
       font-size: 24px;
-      font-weight: bold;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>🎲hả hả hả🎲</h1>
 
-  <h1>🎲Tài Xỉu 🎲</h1>
-  <div class="dice-container" id="dice">⚀ ⚀ ⚀</div>
-  <button onclick="rollDice()">Tung Xúc Xắc</button>
+  <div>
+    <button onclick="choose('Tài')">Chọn Tài (11-17)</button>
+    <button onclick="choose('Xỉu')">Chọn Xỉu (4-10)</button>
+  </div>
 
-  <div class="result" id="sum"></div>
-  <div class="result" id="txResult"></div>
+  <div style="margin-top: 20px;">
+    <button onclick="rollDice()">🎲 Tung xúc xắc 🎲</button>
+  </div>
+
+  <div class="dice" id="dice"></div>
+  <div class="result" id="result"></div>
 
   <script>
-    function getDiceSymbol(num) {
-      const diceSymbols = ["⚀","⚁","⚂","⚃","⚄","⚅"];
-      return diceSymbols[num - 1];
+    let userChoice = '';
+
+    function choose(choice) {
+      userChoice = choice;
+      document.getElementById('result').textContent = `Bạn đã chọn: ${choice}`;
     }
 
     function rollDice() {
-      const dice = [];
-      for (let i = 0; i < 3; i++) {
-        dice.push(Math.floor(Math.random() * 6) + 1);
+      if (!userChoice) {
+        alert("Bạn cần chọn Tài hoặc Xỉu trước!");
+        return;
       }
 
-      const diceSymbols = dice.map(getDiceSymbol).join(' ');
-      const total = dice.reduce((sum, val) => sum + val, 0);
-      const result = total <= 10 ? "❄️ XỈU ❄️" : "🔥 TÀI 🔥";
+      const dice1 = Math.floor(Math.random() * 6) + 1;
+      const dice2 = Math.floor(Math.random() * 6) + 1;
+      const dice3 = Math.floor(Math.random() * 6) + 1;
+      const total = dice1 + dice2 + dice3;
 
-      document.getElementById("dice").innerHTML = diceSymbols;
-      document.getElementById("sum").innerText = `Tổng điểm: ${total}`;
-      document.getElementById("txResult").innerText = `Kết quả: ${result}`;
+      document.getElementById('dice').textContent = `🎲 ${dice1} + ${dice2} + ${dice3} = ${total}`;
+
+      let outcome = (total >= 4 && total <= 10) ? 'Xỉu' : 'Tài';
+
+      let resultText = `Kết quả: ${outcome} (${total}) → `;
+      resultText += (userChoice === outcome) ? '🎉 Bạn thắng!' : '😢 Bạn thua rồi.';
+
+      document.getElementById('result').textContent = resultText;
+
+      userChoice = ''; // reset sau mỗi ván
     }
   </script>
-
 </body>
 </html>
